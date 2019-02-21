@@ -27,6 +27,11 @@ public class Auto {
                 vin_no, brand, model, price_basic, getOrderedEquipmentNames(), calcFullPrice());
 
     }
+    //metoda do zamowienia dodatkowego wyposazenia
+    public void setEquipmentOrderByName(String name){
+        int index = eq_name.indexOf(name);
+        eq_order.set(index, 1);
+    }
     //metoda zwracajaca cene auta z wyposazeniem
     public double calcFullPrice(){
         double price_full = price_basic;
