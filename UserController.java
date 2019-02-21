@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 
 public class UserController {
@@ -35,11 +36,23 @@ public class UserController {
         System.out.println("Nie ma takiego uzytkownika: " + login_delete);
         return false;
     }
+    public boolean passwordCheck(String newPassword){
+        //dlugosc hasla co najmniej 6 znakow
+        String template = ".{6,32}";
+        //musi byc przynajmniej jedna cyfra
+        String template1 = ".*[A-Z]+.*";
+        return Pattern.matches(template, newPassword) && Pattern.matches(template1,newPassword) && Pattern.matches(template, newPassword);
+    }
 
-    public boolean changePassword(String login, String oldPassword, String newPassword1, String newPassword2) {
+    public boolean changePassword(String login, String oldPassword, String newPassword1, String newPassword2){
         for (int i = 0; i < registered_users.size(); i++) {
-                if (registered_users.get(i).getLogin().equals(login)) {
-                    if (newPassword1.equals(newPassword2) && !newPassword1.equals(oldPassword)) {
+            //szukamy usera po loginie
+
+            if (registered_users.get(i).getLogin().equals(login)) {
+                //sprawdzamy podobienstwo hasel
+                if (newPassword1.equals(newPassword2) && !newPassword1.equals(oldPassword)) {
+                    //sprawdzamy poprawnosc nowego hasla
+                    if (passwordCheck(newPassword1)) {
                         registered_users.get(i).setPassword(newPassword1);
                         System.out.println("Haslo zostalo zmienione");
                         return true;
@@ -51,8 +64,7 @@ public class UserController {
             System.out.println("Nie ma takiego uzytkownika: " + login + "lub stare haslo jest bledne");
             return false;
         }
-
-
+    }
         public void showUsers(){
             registered_users.forEach(user -> System.out.println(user));
         }
