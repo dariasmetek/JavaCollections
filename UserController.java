@@ -44,7 +44,7 @@ public class UserController {
         return Pattern.matches(template, newPassword) && Pattern.matches(template1,newPassword) && Pattern.matches(template, newPassword);
     }
 
-    public boolean changePassword(String login, String oldPassword, String newPassword1, String newPassword2){
+    public boolean changePassword(String login, String oldPassword, String newPassword1, String newPassword2) {
         for (int i = 0; i < registered_users.size(); i++) {
             //szukamy usera po loginie
 
@@ -57,6 +57,8 @@ public class UserController {
                         System.out.println("Haslo zostalo zmienione");
                         return true;
                     }
+                    return  false;
+                    }
                     System.out.println("Podane hasla sa rozne lub takie same jak stare haslo");
                     return false;
                 }
@@ -64,7 +66,6 @@ public class UserController {
             System.out.println("Nie ma takiego uzytkownika: " + login + "lub stare haslo jest bledne");
             return false;
         }
-    }
         public void showUsers(){
             registered_users.forEach(user -> System.out.println(user));
         }
