@@ -19,6 +19,24 @@ public class AutoController {
         }
 
     }
+    //Usuwanie auta
+    public void deleteAutobyVin (String vin) {
+        for (int i = 0; i < ordered_autos.size(); i++) {
+            if (ordered_autos.get(i).getVin_no().equals(vin)) {
+                System.out.println("Usunieto auto: " + ordered_autos.get(i));
+                ordered_autos.remove(i);
+            }
+        }
+    }
+    //Usuwanie wyposazenia
+    public void deleteEquipment(String vin, String eq_name) {
+        for (int i = 0; i < ordered_autos.size(); i++) {
+            if (ordered_autos.get(i).getVin_no().equals(vin)) {
+                System.out.println("Usunieto wyposazenie");
+                ordered_autos.get(i).setEquipmentOrderByName(eq_name);
+            }
+        }
+    }
     public void getAllAutos(){
         ordered_autos.forEach(auto -> System.out.println(auto));
     }

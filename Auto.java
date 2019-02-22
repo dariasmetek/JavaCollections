@@ -30,7 +30,15 @@ public class Auto {
     //metoda do zamowienia dodatkowego wyposazenia
     public void setEquipmentOrderByName(String name){
         int index = eq_name.indexOf(name);
-        eq_order.set(index, 1);
+        if(eq_order.get(index) == 0){
+            //dodawanie do wyposazenia
+            eq_order.set(index, 1);
+
+        }else {
+            //usuwanie z wyposazenia
+            eq_order.set(index, 0);
+        }
+
     }
     //metoda zwracajaca cene auta z wyposazeniem
     public double calcFullPrice(){
